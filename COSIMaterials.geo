@@ -17,6 +17,43 @@ al6061.ComponentByMass Zn 0.0025
 al6061.ComponentByMass Ti 0.0015
 al6061.ComponentByMass Al 0.9665
 
+
+ #Density calculated based on volume of Battery and measured total mass of 305 kg
+Material LeadAcid
+LeadAcid.Density 1.45
+LeadAcid.ComponentByMass Pb 0.96
+LeadAcid.ComponentByMass Sb 0.03
+LeadAcid.ComponentByMass Sn 0.015
+LeadAcid.ComponentByMass Cu 0.015
+
+#Density calculated based on volume of SIP and measured total mass of 284 kg
+Material mSIP
+mSIP.Density 0.61
+mSIP.ComponentByMass Al 1.0
+
+#PanTilt camera top assumed to be steel and denisty calcualted based on measured mass
+Material mCamera
+mCamera.Density 4.5
+mCamera.ComponentByMass Fe 0.72
+mCamera.ComponentByMass Ni 0.08
+mCamera.ComponentByMass Cr 0.18
+mCamera.ComponentByMass Mn 0.02
+
+#XPS Foam
+Material XPS
+XPS.Density 0.03
+XPS.ComponentByAtoms C 8
+XPS.ComponentByAtoms H 8
+
+
+Material Wood
+Wood.Density 0.2
+Wood.ComponentByMass C 0.5
+Wood.ComponentByMass O 0.43
+Wood.ComponentByMass H 0.06
+Wood.ComponentByMass N 0.01
+
+
 # From SPI...
 Material pmtmix
 pmtmix.Density 1.0
@@ -130,7 +167,7 @@ mdetector_al6061.ComponentByMass Al 0.9665
 
 Material Cardcage
 ###defined to be made of Aluminum but to have the correct density such that a solid card cage made of this material will have the correct mass
-Cardcage.Density 0.7805
+Cardcage.Density 0.5
 Cardcage.ComponentByAtoms Al 1
 
 Material SourcePlastic

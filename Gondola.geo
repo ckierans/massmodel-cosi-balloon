@@ -7,9 +7,11 @@
 #The gondola mass from Solidworks is 366 lbs.
 
 Include Intro.geo
+Include Radiator.geo
 
 Constant GondolaBeam_HalfWidth {7.62/2}
-Constant Beam_Thickness 0.3175
+Constant Beam_Thickness {0.5} 
+#Made thicker to take into account threaded inserts
 Constant GondolaHorizontalBeam_HalfLength {134.5/2}
 Constant DetPositionWithinGondola 76.91
 
@@ -18,6 +20,10 @@ Gondola.Visibility 0
 Gondola.Virtual True
 Gondola.Material Vacuum
 Gondola.Shape BRIK 75 75 110
+
+Include TwelveCardCages.geo
+TwelveCardCages.Mother Gondola
+TwelveCardCages.Position 0 0 {DetPositionWithinGondola - 10.49 - CC_halfheight}
 
 Volume Gondola_VerticalBeam
 Gondola_VerticalBeam.Visibility 1
@@ -42,7 +48,6 @@ Gondola_HorizontalBeamInside.Material Vacuum
 Gondola_HorizontalBeamInside.Shape BRIK GondolaHorizontalBeam_HalfLength {GondolaBeam_HalfWidth-Beam_Thickness} {GondolaBeam_HalfWidth-Beam_Thickness}
 Gondola_HorizontalBeamInside.Mother Gondola_HorizontalBeam
 Gondola_HorizontalBeamInside.Position 0 0 0
-
 
 
 Volume Gondola_4_BeamBase
@@ -120,7 +125,12 @@ Done
 
 
 
-#Antenna booms. These should be commented out for the majority of the calibrations, because they will probably be placed on at the last moment. But they should be in the model for flight simulations.
+#Include Electronics in the Electronics Bay
+Include ElectronicsBay.geo
+EBay.Position 0 0 {-22.8 + EBayHalfHeight + GondolaBeam_HalfWidth}
+EBay.Mother Gondola
+
+
 
 Include GPSAntennaSupport.geo
 GPSAntennaSupport.Mother Gondola
@@ -130,20 +140,66 @@ GPSAntennaSupport.Position {GondolaHorizontalBeam_HalfLength + GondolaBeam_HalfW
 Volume CSBFAntennaBoom
 CSBFAntennaBoom.Visibility 1
 CSBFAntennaBoom.Material al6061
-CSBFAntennaBoom.Shape BRIK GondolaBeam_HalfWidth {429.3/2} GondolaBeam_HalfWidth
+CSBFAntennaBoom.Shape BRIK {GondolaBeam_HalfWidth} {609/2} {GondolaBeam_HalfWidth}
 CSBFAntennaBoom.Mother Gondola
 CSBFAntennaBoom.Position {-GondolaHorizontalBeam_HalfLength-GondolaBeam_HalfWidth-8.57} 0 104.19
 
 Volume CSBFAntennaBoom_Inside
 CSBFAntennaBoom_Inside.Visibility 0
 CSBFAntennaBoom_Inside.Material Vacuum
-CSBFAntennaBoom_Inside.Shape BRIK {GondolaBeam_HalfWidth-Beam_Thickness} {429.3/2} {GondolaBeam_HalfWidth-Beam_Thickness}
+CSBFAntennaBoom_Inside.Shape BRIK {GondolaBeam_HalfWidth - Beam_Thickness} {609/2} {GondolaBeam_HalfWidth - Beam_Thickness}
 CSBFAntennaBoom_Inside.Mother CSBFAntennaBoom
 CSBFAntennaBoom_Inside.Position 0 0 0
 
 
-Include TwelveCardCages.geo
-TwelveCardCages.Mother Gondola
-TwelveCardCages.Position 0 0 {DetPositionWithinGondola - 10.49 - CC_halfheight}
+Volume DivingBoard
+DivingBoard.Visibility 1
+DivingBoard.Color 3
+DivingBoard.Material al6061
+DivingBoard.Shape BRIK {50/2} {20/2} {0.5/2}
+DivingBoard.Position {-GondolaHorizontalBeam_HalfLength - GondolaBeam_HalfWidth*2 - 50/2} 0 {DetPositionWithinGondola}
+DivingBoard.Mother Gondola
+
+Volume PanTiltCamera_Mount
+PanTiltCamera_Mount.Visibility 1
+PanTiltCamera_Mount.Color 3
+PanTiltCamera_Mount.Material al6061
+PanTiltCamera_Mount.Shape TUBE 0 {6.4/2} {52/2} 0 360 
+PanTiltCamera_Mount.Position {-GondolaHorizontalBeam_HalfLength - GondolaBeam_HalfWidth*2 - 50 + 10} 0 {DetPositionWithinGondola + 52/2 + 0.5}
+PanTiltCamera_Mount.Mother Gondola
+
+Volume PanTiltCamera_Top
+PanTiltCamera_Top.Visibility 1
+PanTiltCamera_Top.Color 3
+PanTiltCamera_Top.Material mCamera
+PanTiltCamera_Top.Shape TUBE {6/2} {13.4/2} {38/2} 60 300 
+PanTiltCamera_Top.Position {-GondolaHorizontalBeam_HalfLength - GondolaBeam_HalfWidth*2 - 50 + 10} 0 {DetPositionWithinGondola + 52 + 3}
+PanTiltCamera_Top.Rotation 0 90 0
+PanTiltCamera_Top.Mother Gondola
+
+
+
+#Volume to represent SIP
+Volume SIP
+SIP.Visibility 1
+SIP.Color 3
+SIP.Material mSIP
+SIP.Shape BRIK {130/2} {60/2} {60/2}
+SIP.Position 0 0 {-22.8 - GondolaBeam_HalfWidth - 60/2}
+SIP.Mother Gondola
+
+
+Include Radiator.geo
+Radiator.Mother Gondola
+Radiator.Position {-GondolaHorizontalBeam_HalfLength-GondolaBeam_HalfWidth} 0 {104.19+6}
+Radiator.Rotation 0 0 90
+
+Volume RadiatorReservoir
+RadiatorReservoir.Shape TUBS {8.8/2} {9.91/2} {27.9/2} 0 360
+RadiatorReservoir.Material al6061
+RadiatorReservoir.Position {-GondolaHorizontalBeam_HalfLength-GondolaBeam_HalfWidth + 15+6} {30} {104.19 + 6 + 27/2}
+RadiatorReservoir.Color 3
+RadiatorReservoir.Mother Gondola
+
 
 

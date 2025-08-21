@@ -1,13 +1,13 @@
-#To use with Gondola and no Antennas: 
+#To use with Gondola:
 
 Include Intro.geo
-Include COSI_TriggerCriteria.det
-
+#Include COSI_TriggerCriteria.det
+Include GeD_12DetectorActive.det
 
 ###Positive X is in the direction of the sun (front)
 
-SurroundingSphere 150 0 0 0 150
-
+SurroundingSphere 340 0 0 0 340
+#ShowSurroundingSphere True
 
 Constant zshift 10.884 
 ##define to be the shift of the shields and detectorhead away from the origin, where the origin is defined as the center of the gondola
@@ -24,7 +24,7 @@ Include LowerShield.geo
 LowerShield.Position 0 0 {DetPositionWithinGondola + zshift}
 LowerShield.Mother WorldVolume
 
-Include DetectorHead.12Det.geo
+Include DetectorHead.geo
 DetectorHead.Position 0 0 {DetPositionWithinGondola + zshift} ###z used to be {-5.245 + zshift}
 DetectorHead.Mother WorldVolume
 
@@ -33,23 +33,31 @@ ThermalRadiators_CompleteSet.Position 0 0 {DetPositionWithinGondola + zshift}
 ThermalRadiators_CompleteSet.Mother WorldVolume
 
 
+Volume FoamTop
+FoamTop.Visibility 1
+FoamTop.Color 3
+FoamTop.Material XPS
+FoamTop.Shape BRIK {GondolaHorizontalBeam_HalfLength - 10} GondolaHorizontalBeam_HalfLength {2.54/2}
+FoamTop.Position {15} 0 {104.19 + GondolaBeam_HalfWidth + 2.54/2}
+FoamTop.Mother WorldVolume
+
+
+
+
+
 Include Gondola.geo
 Gondola.Position 0 0 0
 Gondola.Mother WorldVolume
 
 
+Include SolarPanels.geo
+SolarPanels_Frame.Copy SolarPanels_Left
+SolarPanels_Left.Position 30 190 0
+SolarPanels_Left.Rotation 0 70 0
+SolarPanels_Left.Mother WorldVolume
 
-#USE THIS TO VISUALIZE SURROUNDING SPHERE, uncomment the following lines and make sure the radius and Position corresponds to the SurroundingSphere option used.
-#Volume testsphere
-#testsphere.Visibility 1
-#testsphere.Material Vacuum
-#testsphere.Shape SPHE 0 150 0 180 0 360
-#testsphere.Position 0 0 0
-#testsphere.Mother WorldVolume
-
-
-
-
-
-
-
+Include SolarPanels.geo
+SolarPanels_Frame.Copy SolarPanels_Right
+SolarPanels_Right.Position 30 -190 0
+SolarPanels_Right.Rotation 0 70 0
+SolarPanels_Right.Mother WorldVolume

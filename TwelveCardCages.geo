@@ -40,23 +40,23 @@ Done
 #Now orient the four sides with three CCs each so that it makes up the 12 cardcages that sit in the top of the electronic bay.
 
 ThreeCardCages.Copy ThreeCCs_1
-ThreeCCs_1.Position {-14.6585} {65.34/2+CC_halfdepth} 0
+ThreeCCs_1.Position {-14.6585} {65.34/2 + CC_halfdepth + 1.9615} 0
 ThreeCCs_1.Color 5
 ThreeCCs_1.Mother TwelveCardCages
 
 ThreeCardCages.Copy ThreeCCs_2
-ThreeCCs_2.Position {14.6585} {-65.34/2-CC_halfdepth} 0
+ThreeCCs_2.Position {14.6585} {-65.34/2 - CC_halfdepth - 1.9615} 0
 ThreeCCs_2.Color 6
 ThreeCCs_2.Mother TwelveCardCages
 
 ThreeCardCages.Copy ThreeCCs_3
-ThreeCCs_3.Position {-65.34/2-CC_halfdepth} {-14.6585} 0
+ThreeCCs_3.Position {-65.34/2 - CC_halfdepth - 1.9615} {-14.6585} 0
 ThreeCCs_3.Color 7
 ThreeCCs_3.Rotation 0 0 90
 ThreeCCs_3.Mother TwelveCardCages
 
 ThreeCardCages.Copy ThreeCCs_4
-ThreeCCs_4.Position {+65.34/2+CC_halfdepth} {14.6585} 0
+ThreeCCs_4.Position {+65.34/2 + CC_halfdepth +1.9615} {14.6585} 0
 ThreeCCs_4.Color 8
 ThreeCCs_4.Rotation 0 0 90
 ThreeCCs_4.Mother TwelveCardCages

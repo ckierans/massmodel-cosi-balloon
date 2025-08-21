@@ -28,7 +28,7 @@ GPS_ShortBeam.Visibility 1
 GPS_ShortBeam.Material al6061
 GPS_ShortBeam.Shape BRIK {3.8/2} {264.2/2} {3.8/2}
 GPS_ShortBeam.Mother GPSAntennaSupport
-GPS_ShortBeam.Position {-274.3/2+3.8/2} 0 GondolaBeam_HalfWidth
+GPS_ShortBeam.Position {-274.3/2+3.8/2} 0 {GondolaBeam_HalfWidth + 3.8/2}
 
 Volume GPS_ShortBeamInside
 GPS_ShortBeamInside.Visibility 0
