@@ -18,6 +18,17 @@ al6061.ComponentByMass Ti 0.0015
 al6061.ComponentByMass Al 0.9665
 
 
+# Based on https://iopscience.iop.org/article/10.1088/1757-899X/602/1/012080, assuming we need 3.15 mg of potassium to match the activation seen by Savitri. Added Sept 2025
+Material cococharcoal
+cococharcoal.Density 0.5
+cococharcoal.ComponentByMass C 0.817
+cococharcoal.ComponentByMass O 0.1457
+cococharcoal.ComponentByMass S 0.0010
+cococharcoal.ComponentByMass N 0.0025
+cococharcoal.ComponentByMass H 0.0329
+cococharcoal.ComponentByMass K 0.000045
+
+
  #Density calculated based on volume of Battery and measured total mass of 305 kg
 Material LeadAcid
 LeadAcid.Density 1.45

@@ -1,8 +1,8 @@
-###Because the GeD's live within the IR Shields, I've used this file to define the geometry of the IR Shields, and then I've included the 12 GeD's and the coldfinger.
+###Because the GeD's live within the IR Shields, I've used this file to define the geometry of the IR Shields, and then I've included the 12 GeD's and the coldfinger
 ##check the thikcness of IR shields. Is the constant the half thickness!?
 
 
-Include Intro.geo
+#Include Intro.geo
 
 Constant IRShield_thickness 0.0508
 ##Constant GeDs_Z_withinIRShields 0.486
@@ -107,3 +107,38 @@ Include ColdFingerExtension_WithinIRShield.geo
 ColdFingerExtension_WithinIRShield.Position 0 0 0
 #ColdFingerExtension_WithinIRShield.Visibility 0 
 ColdFingerExtension_WithinIRShield.Mother IRShieldAluInside
+
+
+Volume CharcoalGetter_Frame
+CharcoalGetter_Frame.Visibility 1
+CharcoalGetter_Frame.Material al6061
+CharcoalGetter_Frame.Shape BRIK {9.2/2} {9.2/2} {1.2/2} 
+CharcoalGetter_Frame.Color 3
+
+Volume CharcoalGetter_FrameInt
+CharcoalGetter_FrameInt.Visibility 1
+CharcoalGetter_FrameInt.Material Vacuum
+CharcoalGetter_FrameInt.Shape BRIK {9.0/2} {9.0/2} {1.0/2} 
+CharcoalGetter_FrameInt.Position 0 0 0
+CharcoalGetter_FrameInt.Mother CharcoalGetter_Frame
+CharcoalGetter_FrameInt.Color 3
+
+Volume Charcoal
+Charcoal.Visibility 1
+Charcoal.Material cococharcoal
+# Volume equals 155 CC of charcoal, vs 140 CC from email in 2013. 
+Charcoal.Shape BRIK {8.8/2} {8.8/2} {1.0/2}
+Charcoal.Position 0 0 0
+Charcoal.Mother CharcoalGetter_FrameInt
+Charcoal.Color 3
+
+CharcoalGetter_Frame.Copy CharcoalGetter_1
+CharcoalGetter_1.Position -5.3 -5.5 -4.8
+#CharcoalGetter_1.Mother IRShieldAluInside
+
+CharcoalGetter_Frame.Copy CharcoalGetter_2
+CharcoalGetter_2.Position 5.3 -5.5 -4.8
+#CharcoalGetter_2.Mother IRShieldAluInside
+
+
+

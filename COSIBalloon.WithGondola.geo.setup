@@ -43,8 +43,6 @@ FoamTop.Mother WorldVolume
 
 
 
-
-
 Include Gondola.geo
 Gondola.Position 0 0 0
 Gondola.Mother WorldVolume
