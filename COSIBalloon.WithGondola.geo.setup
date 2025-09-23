@@ -1,10 +1,10 @@
 #To use with Gondola:
 
-Include Intro.geo
-#Include COSI_TriggerCriteria.det
-Include GeD_12DetectorActive.det
-
 ###Positive X is in the direction of the sun (front)
+
+Include Intro.geo
+Include Shields.det
+Include GeD_12DetectorActive.det
 
 SurroundingSphere 340 0 0 0 340
 #ShowSurroundingSphere True
